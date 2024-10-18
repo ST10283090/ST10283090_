@@ -27,7 +27,7 @@ public class Program
             new CultureInfo("en-US"),
             new CultureInfo("fr-FR") 
         };
-
+         
         app.UseRequestLocalization(new RequestLocalizationOptions
         {
             DefaultRequestCulture = new RequestCulture("en-US"),
