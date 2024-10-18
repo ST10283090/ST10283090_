@@ -1,0 +1,116 @@
+﻿@model ST10283090_.Models.Claims
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Claim</h1>
+
+<h4>Claims</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" required />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ClaimsPeriodStart" class="control-label"></label>
+                <input asp-for="ClaimsPeriodStart" class="form-control" type="date" required />
+                <span asp-validation-for="ClaimsPeriodStart" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ClaimsPeriodEnd" class="control-label"></label>
+                <input asp-for="ClaimsPeriodEnd" class="form-control" type="date" required />
+                <span asp-validation-for="ClaimsPeriodEnd" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HoursWorked" class="control-label"></label>
+                <input asp-for="HoursWorked" class="form-control" id="hoursWorked" required />
+                <span asp-validation-for="HoursWorked" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RatePerHour" class="control-label"></label>
+                <input asp-for="RatePerHour" class="form-control" id="ratePerHour" required />
+                <span asp-validation-for="RatePerHour" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Total Amount</label>
+                <input type="text" class="form-control" id="totalAmount" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DescriptionofWork" class="control-label"></label>
+                <input asp-for="DescriptionofWork" class="form-control" required />
+                <span asp-validation-for="DescriptionofWork" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="SingleFile">Select a file (optional)</label>
+                <input type="file" name="SingleFile" class="form-control" />
+                <span class="text-danger" id="fileErrorMessage" style="display:none;">Please select a file to upload.</span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @Html.Partial("_ValidationScriptsPartial")
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-top-right",
+                "timeOut": "3000"
+            };
+
+            $('#hoursWorked, #ratePerHour').on('input', function () {
+                var hoursWorked = parseFloat($('#hoursWorked').val()) || 0;
+                var ratePerHour = parseFloat($('#ratePerHour').val()) || 0;
+                var totalAmount = hoursWorked * ratePerHour;
+
+                $('#totalAmount').val(totalAmount.toFixed(2));
+
+                toastr.info('Total Amount: ' + totalAmount.toFixed(2));
+            });
+
+            $('form').on('submit', function (e) {
+                toastr.success('Claim successfully submitted!');
+                this.submit();
+            });
+        });
+    </script>
+}
+
+
+
+

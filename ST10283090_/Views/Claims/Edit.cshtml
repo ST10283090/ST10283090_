@@ -1,0 +1,140 @@
+﻿@model ST10283090_.Models.Claims
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Claims</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClaimID" />
+            <div class="form-group">
+                <label asp-for="UserID" class="control-label"></label>
+                <input asp-for="UserID" class="form-control" readonly />
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" required />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClaimsPeriodStart" class="control-label"></label>
+                <input asp-for="ClaimsPeriodStart" class="form-control" type="date" required />
+                <span asp-validation-for="ClaimsPeriodStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClaimsPeriodEnd" class="control-label"></label>
+                <input asp-for="ClaimsPeriodEnd" class="form-control" type="date" required />
+                <span asp-validation-for="ClaimsPeriodEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoursWorked" class="control-label"></label>
+                <input asp-for="HoursWorked" class="form-control" id="hoursWorked" required />
+                <span asp-validation-for="HoursWorked" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RatePerHour" class="control-label"></label>
+                <input asp-for="RatePerHour" class="form-control" id="ratePerHour" required />
+                <span asp-validation-for="RatePerHour" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="form-control" id="totalAmount" readonly />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DescriptionofWork" class="control-label"></label>
+                <input asp-for="DescriptionofWork" class="form-control" required />
+                <span asp-validation-for="DescriptionofWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileName" class="control-label"></label>
+                <input asp-for="FileName" class="form-control" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentType" class="control-label"></label>
+                <input asp-for="ContentType" class="form-control" />
+                <span asp-validation-for="ContentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Length" class="control-label"></label>
+                <input asp-for="Length" class="form-control" />
+                <span asp-validation-for="Length" class="text-danger"></span>
+            </div>
+
+            @if (User.IsInRole("Lecturer"))
+            {
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label">Status</label>
+                    <input asp-for="Status" class="form-control" readonly />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <select asp-for="Status" class="form-control" required>
+                        <option value="">Select Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @Html.Partial("_ValidationScriptsPartial")
+    <script>
+        $(document).ready(function () {
+            // Recalculate TotalAmount on input
+            $('#hoursWorked, #ratePerHour').on('input', function () {
+                var hoursWorked = parseFloat($('#hoursWorked').val()) || 0;
+                var ratePerHour = parseFloat($('#ratePerHour').val()) || 0;
+                var totalAmount = hoursWorked * ratePerHour;
+
+                $('#totalAmount').val(totalAmount.toFixed(2));
+            });
+
+            // Initialize TotalAmount field for editing
+            $('#totalAmount').val(parseFloat($('#hoursWorked').val()) * parseFloat($('#ratePerHour').val())).toFixed(2);
+        });
+    </script>
+}
