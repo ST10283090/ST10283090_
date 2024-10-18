@@ -20,6 +20,7 @@ namespace ST10283090_.Controllers
             _userManager = userManager;
         }
 
+
         // GET: Claims
         public async Task<IActionResult> Index()
         {
