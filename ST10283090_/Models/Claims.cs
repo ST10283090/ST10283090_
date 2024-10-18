@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ST10283090_.Models
 {
@@ -45,6 +46,10 @@ namespace ST10283090_.Models
 
         [Display(Name = "Content Type")]
         public string? ContentType { get; set; }
+
+        [NotMapped]
+        [Required(ErrorMessage = "Please select a file.")]
+        public IFormFile SingleFile { get; set; }
 
         [Display(Name = "File Size")]
         public long? Length { get; set; }

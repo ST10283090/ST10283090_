@@ -67,9 +67,9 @@
             </div>
 
             <div class="form-group">
-                <label for="SingleFile">Select a file (optional)</label>
-                <input type="file" name="SingleFile" class="form-control" />
-                <span class="text-danger" id="fileErrorMessage" style="display:none;">Please select a file to upload.</span>
+                <label for="SingleFile">Select a file</label>
+                <input type="file" name="SingleFile" class="form-control" /> 
+                <span asp-validation-for="SingleFile" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -110,6 +110,8 @@
         });
     </script>
 }
+
+
 
 
 

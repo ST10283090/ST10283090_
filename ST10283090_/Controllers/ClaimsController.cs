@@ -71,7 +71,7 @@ namespace ST10283090_.Controllers
         {
             const long maxFileSize = 15 * 1024 * 1024; 
                                                       
-            var allowedFileTypes = new[] { "application/pdf", "image/png", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "image/jpeg" };
+            var allowedFileTypes = new[] { "application/pdf", "image/png", "image/jpeg" };
 
             if (ModelState.IsValid)
             {
@@ -88,6 +88,7 @@ namespace ST10283090_.Controllers
                         ModelState.AddModelError("SingleFile", "File size must not exceed 15MB.");
                         return View(claim);
                     }
+
                     if (!allowedFileTypes.Contains(SingleFile.ContentType))
                     {
                         ModelState.AddModelError("SingleFile", "Invalid file type. Only PDF, PNG, DOCX, and JPEG files are allowed.");
@@ -240,5 +241,3 @@ namespace ST10283090_.Controllers
         }
     }
 }
-
-

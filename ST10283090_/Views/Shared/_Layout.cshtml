@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ST10283090_.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-
 </head>
 <body>
     <header>
@@ -29,7 +28,7 @@
                                     <a class="nav-link" asp-controller="Claims" asp-action="Index">My Claims</a>
                                 </li>
                             }
-                            else 
+                            else
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Claims" asp-action="Index">All Claims</a>
@@ -54,12 +53,15 @@
             &copy; 2024 - ST10283090_ - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
