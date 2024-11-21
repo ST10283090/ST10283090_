@@ -218,7 +218,7 @@ namespace ST10283090_.Controllers
             if (claim == null)
             {
                 return NotFound();
-            }
+            }        
             claim.Status = "Approved";
             await _context.SaveChangesAsync();
 
