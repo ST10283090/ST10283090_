@@ -238,7 +238,7 @@ namespace ST10283090_.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+                
         private bool ClaimsExists(int id)
         {
             return _context.Claims.Any(e => e.ClaimID == id);
