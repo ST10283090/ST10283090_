@@ -111,6 +111,7 @@ namespace ST10283090_.Controllers
                 _context.Add(claim);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
 
             return View(claim);
