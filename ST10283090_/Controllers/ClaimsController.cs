@@ -97,6 +97,7 @@ namespace ST10283090_.Controllers
                         return View(claim);
                     }
 
+
                     claim.FileName = SingleFile.FileName;
                     claim.ContentType = SingleFile.ContentType;
                     claim.Length = SingleFile.Length;
