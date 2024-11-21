@@ -93,6 +93,7 @@
                 "timeOut": "3000"
             };
 
+
             $('#hoursWorked, #ratePerHour').on('input', function () {
                 var hoursWorked = parseFloat($('#hoursWorked').val()) || 0;
                 var ratePerHour = parseFloat($('#ratePerHour').val()) || 0;
@@ -100,8 +101,10 @@
 
                 $('#totalAmount').val(totalAmount.toFixed(2));
 
+
                 toastr.info('Total Amount: ' + totalAmount.toFixed(2));
             });
+
 
             $('form').on('submit', function (e) {
                 toastr.success('Claim successfully submitted!');
