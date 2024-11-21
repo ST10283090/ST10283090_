@@ -6,7 +6,7 @@ namespace ST10283090_.Models
     public class Claims
     {
         [Key]
-        public int ClaimID { get; set; }
+        public int ClaimID { get; set; } 
 
         [Display(Name = "Lecturer ID")]
         public string? UserID { get; set; }
