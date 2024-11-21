@@ -225,7 +225,7 @@ namespace ST10283090_.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
+        [HttpPost] 
         public async Task<IActionResult> Reject(int id)
         {
             var claim = await _context.Claims.FindAsync(id);

@@ -15,7 +15,7 @@ namespace ST10283090_.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() 
         {
             return View();
         }

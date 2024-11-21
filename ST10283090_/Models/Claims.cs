@@ -47,7 +47,7 @@ namespace ST10283090_.Models
         [Display(Name = "Content Type")]
         public string? ContentType { get; set; }
 
-        [NotMapped]
+        [NotMapped] 
         [Required(ErrorMessage = "Please select a file.")]
         public IFormFile SingleFile { get; set; }
 
